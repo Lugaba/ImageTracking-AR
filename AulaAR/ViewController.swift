@@ -24,6 +24,11 @@ class ViewController: UIViewController, ARSessionDelegate {
             configuration.maximumNumberOfTrackedImages = 2
         }
         
+        // debug options
+#if DEBUG
+        arView.debugOptions = [.showFeaturePoints, .showAnchorOrigins, .showAnchorGeometry]
+#endif
+        
         arView.session.run(configuration)
         arView.session.delegate = self
     }
@@ -39,8 +44,10 @@ class ViewController: UIViewController, ARSessionDelegate {
                 
                 if imageName == "carta" {
                     cartaObjeto = "donuts"
-                } else if imageName == "carta1" {
+                } else if imageName == "tecla" {
                     cartaObjeto = "burger"
+                } else if imageName == "oficina1" {
+                    cartaObjeto = "oficinaText"
                 }
                 
                 if let scene = try? Experience.loadBox() {
